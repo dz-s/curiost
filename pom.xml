@@ -104,15 +104,10 @@
     </scm>
     <ciManagement>
         <system>jenkins</system>
-        <url>http://ci.rexsl.com:8080/job/curiost/</url>
+        <url>http://ci.curiost.com:8080/job/curiost/</url>
     </ciManagement>
     <distributionManagement>
         <site>
-            <!--
-            Deploying the site to Amazon S3. "www.rexsl.com" server details
-            are defined in "settings.xml" file, provided by continuous integration
-            server during build cycle.
-            -->
             <id>maven.curiost.com</id>
             <name>curiost.com Project Site</name>
             <url>s3://maven.curiost.com/</url>
