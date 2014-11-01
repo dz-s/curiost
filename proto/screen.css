@@ -16,7 +16,19 @@
 a, a:hover, a:visited {
   color: #369;
 }
-input, button, textarea {
+input, button, textarea, select {
   padding: .2em .4em;
   border: 1px solid black;
+  display: block;
+}
+label {
+  display: block;
+  margin-top: .5em;
+}
+button {
+  margin-top: .5em;
+}
+.inline input, .inline button {
+  display: inline-block;
+  margin-top: 0;
 }

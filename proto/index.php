@@ -9,22 +9,26 @@
   <body>
     <div class="body">
       <div class="par">
-        <span><strong>curiost</strong></span>
-        <a href="">submit</a>
-        <a href="">$78.90</a>
-        <a href="">terms</a>
+        <a href="/">home</a>
+        <a href="/submit">submit</a>
+        <a href="/acc">$78.90</a>
+        <a href="/terms">terms</a>
         <span>@yegor256</span>
-        <a href=""><i class="fa fa-sign-out"></i></a>
+        <a href="/"><i class="fa fa-sign-out"></i></a>
       </div>
       <div class="par">
-        <form>
-          <fieldset>
+        <form action="/" method="post">
+          <fieldset class="inline">
             <input name="q" size="30" value="name:Yegor"/>
             <button type="submit"><i class="fa fa-search"></i></button>
           </fieldset>
         </form>
       </div>
-      <?php $page = '';
+      <?php $page = substr($_SERVER['REQUEST_URI'], 1);
+      if (empty($page)) {
+        $page = 'index';
+      }
+      include (__DIR__ . '/' . $page . '.phtml');
       ?>
     </div>
   </body>
