@@ -1,0 +1,22 @@
+* {
+  font-family: monospace;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: white;
+  list-style: none;
+}
+.body {
+  margin: 1em;
+}
+.slots > li, .par {
+  margin-top: 1em;
+}
+a, a:hover, a:visited {
+  color: #369;
+}
+input, button, textarea {
+  padding: .2em .4em;
+  border: 1px solid black;
+}
