@@ -20,6 +20,11 @@ input, button, textarea, select {
   padding: .2em .4em;
   border: 1px solid black;
   display: block;
+  resize: none;
+}
+textarea {
+  width: 30em;
+  height: 4em;
 }
 label {
   display: block;
@@ -31,4 +36,23 @@ button {
 .inline input, .inline button, .inline select, .inline label {
   display: inline-block;
   margin-top: 0;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+}
+td, th {
+  vertical-align: top;
+  padding-right: 2em;
+}
+fieldset, form {
+  display: inline;
+}
+.flash {
+  color: green;
+  background: lightgreen;
+  padding: .5em;
 }

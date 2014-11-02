@@ -9,12 +9,14 @@
   <body>
     <div class="body">
       <div class="par">
-        <a href="/">home</a>
-        <a href="/submit">submit</a>
+        <i class="fa fa-database"></i>
         <a href="/acc">$78.90</a>
         <a href="/terms">terms</a>
-        <span>@yegor256</span>
-        <a href="/"><i class="fa fa-sign-out"></i></a>
+        <a href="/profile">@yegor256</a>
+        <a href="/">exit</a>
+        |
+        <a href="/withdraw">withdraw</a>
+        <a href="/submit">submit</a>
       </div>
       <div class="par">
         <form action="/" method="post">
@@ -23,6 +25,9 @@
             <button type="submit"><i class="fa fa-search"></i></button>
           </fieldset>
         </form>
+      </div>
+      <div class="par flash">
+        request added successfully
       </div>
       <?php $page = substr($_SERVER['REQUEST_URI'], 1);
       if (empty($page)) {
