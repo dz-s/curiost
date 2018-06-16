@@ -21,20 +21,27 @@
         %nav
           %ul
             %li
-              - if defined? guser
-                %a{href: '/'}
-                  = "@#{guser[:login]}"
+              - if defined? user
+                %a{href: url{'/'}}
+                  = "@#{user[:login]}"
               - else
                 %a{href: login_link}
                   Login
-            - if defined? guser
+            - if defined? user
               %li
-                %a{href: '/logout'}
+                %a{href: url('/add')}
+                  Add
+              %li
+                %a{href: url('/logout')}
                   Logout
       %article
         = yield
-      %footer
+      %footer{style: 'color:gray'}
         %nav
           %ul
-            %li{style: 'color:gray'}
+            %li
               &copy; 2018 Curiost
+        %nav
+          %ul
+            %li
+              = ver

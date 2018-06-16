@@ -41,13 +41,12 @@ class AppTest < Test::Unit::TestCase
   end
 
   def test_it_renders_home_page
-    get('/')
+    get('/hello')
     assert(last_response.ok?)
-    assert(last_response.body.include?('curiost'))
   end
 
   def test_renders_page_not_found
     get('/the-url-that-is-absent')
-    assert(last_response.status == 404)
+    assert_equal(404, last_response.status)
   end
 end

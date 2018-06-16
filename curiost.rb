@@ -20,6 +20,7 @@
 
 STDOUT.sync = true
 
+require 'time'
 require 'haml'
 require 'sinatra'
 require 'sinatra/cookies'
@@ -28,27 +29,29 @@ require 'glogin'
 
 require_relative 'version'
 require_relative 'objects/dynamo'
+require_relative 'objects/owner'
 
 configure do
   Haml::Options.defaults[:format] = :xhtml
-  config = if ENV['RACK_ENV'] == 'test'
-    {
-      'github' => {
-        'client_id' => '?',
-        'client_secret' => '?'
-      },
-      'sentry' => ''
-    }
-  else
-    YAML.safe_load(File.open(File.join(File.dirname(__FILE__), 'config.yml')))
-  end
+  config = {
+    'github' => {
+      'client_id' => '?',
+      'client_secret' => '?',
+      'encryption_secret' => ''
+    },
+    'sentry' => ''
+  }
+  config = YAML.safe_load(File.open(File.join(File.dirname(__FILE__), 'config.yml'))) unless ENV['RACK_ENV'] == 'test'
   if ENV['RACK_ENV'] != 'test'
     Raven.configure do |c|
       c.dsn = config['sentry']
       c.release = VERSION
     end
   end
+  set :dump_errors, true
+  set :show_exceptions, true
   set :config, config
+  set :logging, true
   set :server_settings, timeout: 25
   set :dynamo, Dynamo.new(config).aws
   set :glogin, GLogin::Auth.new(
@@ -63,12 +66,14 @@ before '/*' do
     ver: VERSION,
     login_link: settings.glogin.login_uri
   }
+  cookies[:glogin] = params[:glogin] if params[:glogin]
   if cookies[:glogin]
     begin
       @locals[:user] = GLogin::Cookie::Closed.new(
         cookies[:glogin],
         settings.config['github']['encryption_secret']
       ).to_user
+      @locals[:owner] = Owner.new(settings.dynamo, @locals[:user][:login])
     rescue OpenSSL::Cipher::CipherError => _
       @locals.delete(:user)
     end
@@ -88,15 +93,24 @@ get '/logout' do
   redirect to('/')
 end
 
+get '/hello' do
+  redirect '/' if @locals[:user]
+  haml :hello, layout: :layout, locals: merged(
+    title: '/hello'
+  )
+end
+
 get '/' do
+  redirect '/hello' unless @locals[:user]
   haml :index, layout: :layout, locals: merged(
-    title: '/'
+    title: '/',
+    query: params[:q],
+    tuples: @locals[:owner].tuples(params[:q].to_s)
   )
 end
 
 get '/robots.txt' do
-  'User-agent: *
-Disallow: /'
+  "User-agent: *\nDisallow: /"
 end
 
 get '/version' do
@@ -104,12 +118,24 @@ get '/version' do
 end
 
 get '/e' do
+  redirect '/hello' unless @locals[:user]
   haml :entity, layout: :layout, locals: merged(
-    title: '/find'
+    title: params[:entity],
+    entity: params[:entity],
+    history: @locals[:owner].history(params[:entity])
   )
 end
 
-post '/add' do
+get '/add' do
+  redirect '/hello' unless @locals[:user]
+  haml :add, layout: :layout, locals: merged(
+    title: '/add'
+  )
+end
+
+post '/do-add' do
+  redirect '/hello' unless @locals[:user]
+  @locals[:owner].add(params[:entity], Time.parse(params[:time]), params[:rel], params[:text])
   redirect '/'
 end
 

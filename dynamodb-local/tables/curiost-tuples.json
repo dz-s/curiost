@@ -2,15 +2,19 @@
   "TableName": "curiost-tuples",
   "AttributeDefinitions": [
     {
-      "AttributeName": "owner",
-      "AttributeType": "S"
-    },
-    {
-      "AttributeName": "entity",
+      "AttributeName": "uuid",
       "AttributeType": "S"
     },
     {
       "AttributeName": "id",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "login",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "tuple",
       "AttributeType": "S"
     },
     {
@@ -20,12 +24,8 @@
   ],
   "KeySchema": [
     {
-      "AttributeName": "owner",
+      "AttributeName": "uuid",
       "KeyType": "HASH"
-    },
-    {
-      "AttributeName": "entity",
-      "KeyType": "RANGE"
     }
   ],
   "ProvisionedThroughput": {
@@ -33,6 +33,46 @@
     "WriteCapacityUnits": "1"
   },
   "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "tuples",
+      "KeySchema": [
+        {
+          "AttributeName": "login",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "time",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": "1",
+        "WriteCapacityUnits": "1"
+      }
+    },
+    {
+      "IndexName": "search",
+      "KeySchema": [
+        {
+          "AttributeName": "tuple",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "time",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": "1",
+        "WriteCapacityUnits": "1"
+      }
+    },
     {
       "IndexName": "history",
       "KeySchema": [

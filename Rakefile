@@ -65,7 +65,7 @@ task :dynamo do
     puts 'DynamoDB Local table: ' + Dynamo.new.aws.describe_table(
       table_name: 'curiost-tuples'
     )[:table][:table_status]
-  rescue Exception => e
+  rescue StandardError => e
     puts e.message
     sleep(5)
     retry

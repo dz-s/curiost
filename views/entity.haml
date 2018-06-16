@@ -1,0 +1,14 @@
+%h2
+  = entity
+
+- history.each do |t|
+  %p
+    = Time.at(t['time'].to_i).strftime('%-d-%b-%y')
+    %code
+      = t['rel']
+    = ':'
+    - if t['text'].length < 128
+      %a{href: '/?q=' + CGI.escape(t['rel'] + '=' + t['text'])}= t['text']
+    - else
+      = t['text']
+

@@ -1,4 +1,20 @@
-%form
-  %input{name: 'q', type: 'text', size: 40, autocomplete: 'off', placeholder: 'Entity name'}
+%form{method: 'get', action: url('/')}
+  %input{name: 'q', type: 'text', size: 40, autocomplete: 'off', placeholder: 'Query...'}
   %button{type: 'submit'} Find
+
+- if query
+  %h2
+    = query
+
+- tuples.each do |t|
+  %p
+    %span{title: t['uuid']}
+      = Time.at(t['time'].to_i).strftime('%-d-%b-%y')
+    %a{href: url('/e?entity=' + CGI.escape(t['entity']))}= t['entity']
+    %code
+      = t['rel']
+    - if t['text'].length < 128
+      %a{href: '/?q=' + CGI.escape(t['rel'] + '=' + t['text'])}= t['text']
+    - else
+      = t['text']
 
