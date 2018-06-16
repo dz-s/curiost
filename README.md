@@ -5,13 +5,13 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/zold)](http://www.rultor.com/p/yegor256/zold)
 [![We recommend RubyMine](http://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
 
-[![Build Status](https://travis-ci.org/zold-io/zold.svg)](https://travis-ci.org/zold-io/zold)
+[![Build Status](https://travis-ci.org/yegor256/curiost.svg)](https://travis-ci.org/yegor256/curiost)
 [![Build status](https://ci.appveyor.com/api/projects/status/15ola3lb03opv14m?svg=true)](https://ci.appveyor.com/project/yegor256/zold-wcn4o)
-[![PDD status](http://www.0pdd.com/svg?name=zold-io/zold)](http://www.0pdd.com/p?name=zold-io/zold)
+[![PDD status](http://www.0pdd.com/svg?name=yegor256/curiost)](http://www.0pdd.com/p?name=yegor256/curiost)
 [![Gem Version](https://badge.fury.io/rb/zold.svg)](http://badge.fury.io/rb/zold)
-[![Test Coverage](https://img.shields.io/codecov/c/github/zold-io/zold.svg)](https://codecov.io/github/zold-io/zold?branch=master)
+[![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/curiost.svg)](https://codecov.io/github/yegor256/curiost?branch=master)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/7489c1d2bacde40ffc09/maintainability)](https://codeclimate.com/github/zold-io/zold/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7489c1d2bacde40ffc09/maintainability)](https://codeclimate.com/github/yegor256/curiost/maintainability)
 
 **NOTICE**: It's an experiment and a very early draft! Please, feel free to
 submit your ideas and/or pull requests.
@@ -20,14 +20,14 @@ Here is the [White Paper](https://github.com/zold-io/papers/raw/master/wp.pdf).
 
 Join our [Telegram group](https://t.me/zold_io) to discuss it all live.
 
-The license is [MIT](https://github.com/zold-io/zold/blob/master/LICENSE.txt).
+The license is [MIT](https://github.com/yegor256/curiost/blob/master/LICENSE.txt).
 
 ## How to Use
 
 First, install [Ruby 2.3+](https://www.ruby-lang.org/en/documentation/installation/),
 [Rubygems](https://rubygems.org/pages/download), and
 the [gem](https://rubygems.org/gems/zold).
-Here is [how](https://github.com/zold-io/zold/blob/master/INSTALL.md).
+Here is [how](https://github.com/yegor256/curiost/blob/master/INSTALL.md).
 
 To make sure it's installed, try:
 
@@ -207,7 +207,7 @@ numbers it includes must be watched carefully.
 
   * `semaphores` is the amount of locks the server maintain, one per wallet.
     The number may be large (>100), if the node has processed a lot of wallets
-    recently. If it's larger [than 1024](https://github.com/zold-io/zold/issues/199),
+    recently. If it's larger [than 1024](https://github.com/yegor256/curiost/issues/199),
     it's a good reason to worry.
 
 To be continued...
@@ -230,7 +230,7 @@ $ bundle update
 $ rake
 ```
 
-The build has to be clean. If it's not, [submit an issue](https://github.com/zold-io/zold/issues).
+The build has to be clean. If it's not, [submit an issue](https://github.com/yegor256/curiost/issues).
 
 Then, make your changes, make sure the build is still clean,
 and [submit a pull request](https://www.yegor256.com/2014/04/15/github-guidelines.html).
