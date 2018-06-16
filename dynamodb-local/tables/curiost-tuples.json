@@ -14,6 +14,10 @@
       "AttributeType": "S"
     },
     {
+      "AttributeName": "entity",
+      "AttributeType": "S"
+    },
+    {
       "AttributeName": "tuple",
       "AttributeType": "S"
     },
@@ -62,6 +66,26 @@
         },
         {
           "AttributeName": "time",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": "1",
+        "WriteCapacityUnits": "1"
+      }
+    },
+    {
+      "IndexName": "entities",
+      "KeySchema": [
+        {
+          "AttributeName": "login",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "entity",
           "KeyType": "RANGE"
         }
       ],

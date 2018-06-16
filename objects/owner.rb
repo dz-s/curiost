@@ -69,7 +69,7 @@ class Owner
         },
         key_condition_expression: 'login=:l'
       ).items
-    else
+    elsif query.include?('=')
       rel, data = query.split(/\s*=\s*/)
       @aws.query(
         table_name: 'curiost-tuples',
@@ -85,6 +85,19 @@ class Owner
           ':t' => "#{@login} #{rel} #{data}"
         },
         key_condition_expression: '#t=:t'
+      ).items
+    else
+      @aws.query(
+        table_name: 'curiost-tuples',
+        index_name: 'entities',
+        limit: 50,
+        consistent_read: false,
+        select: 'ALL_ATTRIBUTES',
+        expression_attribute_values: {
+          ':l' => @login,
+          ':e' => query
+        },
+        key_condition_expression: 'login=:l and begins_with(entity, :e)'
       ).items
     end
   end
