@@ -1,0 +1,40 @@
+!!! 5
+%html
+  %head
+    %title
+      = title
+    %meta{charset:'UTF-8'}
+    %meta{name:'viewport', content:'width=device-width, initial-scale=1.0'}
+    %meta{name:'keywords', content:'search engine'}
+    %meta{name:'description', content:'Hand made search engine'}
+    %link{type:'text/css', href: url('/css/main.css'), rel:'stylesheet'}
+    %link{href: 'https://cdn.rawgit.com/yegor256/tacit/gh-pages/tacit-css-1.3.0.min.css', rel: 'stylesheet'}
+    %link{rel:'shortcut icon', href: url('/logo-64.png')}
+  %body
+    %section
+      %header
+        %nav
+          %ul
+            %li
+              %a{href: url('/')}
+                %img.logo{src: url('/logo.svg'), style:'width:92px;height:92px;'}
+        %nav
+          %ul
+            %li
+              - if defined? guser
+                %a{href: '/'}
+                  = "@#{guser[:login]}"
+              - else
+                %a{href: login_link}
+                  Login
+            - if defined? guser
+              %li
+                %a{href: '/logout'}
+                  Logout
+      %article
+        = yield
+      %footer
+        %nav
+          %ul
+            %li{style: 'color:gray'}
+              &copy; 2018 Curiost

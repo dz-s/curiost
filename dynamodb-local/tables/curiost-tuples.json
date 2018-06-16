@@ -1,0 +1,57 @@
+{
+  "TableName": "curiost-tuples",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "owner",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "entity",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "id",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "time",
+      "AttributeType": "N"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "owner",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "entity",
+      "KeyType": "RANGE"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": "1",
+    "WriteCapacityUnits": "1"
+  },
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "history",
+      "KeySchema": [
+        {
+          "AttributeName": "id",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "time",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": "1",
+        "WriteCapacityUnits": "1"
+      }
+    }
+  ]
+}
