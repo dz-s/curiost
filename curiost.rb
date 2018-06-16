@@ -49,7 +49,7 @@ configure do
     end
   end
   set :dump_errors, true
-  set :show_exceptions, true
+  set :show_exceptions, false
   set :config, config
   set :logging, true
   set :server_settings, timeout: 25
@@ -136,7 +136,7 @@ end
 
 post '/do-add' do
   redirect '/hello' unless @locals[:user]
-  time = Time.parse(params[:time])
+  time = Time.parse(params[:time] + 'T' + Time.now.strftime('%H:%M:%SZ'))
   @locals[:owner].add(params[:entity], time, params[:rel], params[:text])
   redirect '/'
 end
