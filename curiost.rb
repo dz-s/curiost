@@ -57,7 +57,7 @@ configure do
   set :glogin, GLogin::Auth.new(
     config['github']['client_id'],
     config['github']['client_secret'],
-    'http://www.curiost.com/github-callback'
+    'https://www.curiost.com/github-callback'
   )
 end
 
