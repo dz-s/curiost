@@ -129,7 +129,8 @@ end
 get '/add' do
   redirect '/hello' unless @locals[:user]
   haml :add, layout: :layout, locals: merged(
-    title: '/add'
+    title: '/add',
+    entity: params[:entity].to_s
   )
 end
 
