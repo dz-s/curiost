@@ -6,9 +6,7 @@
 [![We recommend RubyMine](http://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
 
 [![Build Status](https://travis-ci.org/yegor256/curiost.svg)](https://travis-ci.org/yegor256/curiost)
-[![Build status](https://ci.appveyor.com/api/projects/status/15ola3lb03opv14m?svg=true)](https://ci.appveyor.com/project/yegor256/zold-wcn4o)
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/curiost)](http://www.0pdd.com/p?name=yegor256/curiost)
-[![Gem Version](https://badge.fury.io/rb/zold.svg)](http://badge.fury.io/rb/zold)
 [![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/curiost.svg)](https://codecov.io/github/yegor256/curiost?branch=master)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/7489c1d2bacde40ffc09/maintainability)](https://codeclimate.com/github/yegor256/curiost/maintainability)
