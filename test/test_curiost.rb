@@ -40,9 +40,21 @@ class AppTest < Test::Unit::TestCase
     assert(last_response.ok?)
   end
 
-  def test_it_renders_home_page
+  def test_it_renders_front_page
     get('/hello')
     assert(last_response.ok?)
+  end
+
+  def test_it_renders_home_page
+    set_cookie('glogin=tester')
+    get('/')
+    assert(last_response.ok?, last_response.body)
+  end
+
+  def test_posts_new_tuple
+    set_cookie('glogin=tester')
+    post('/do-add', 'entity=john+smith&time=01-01-2018&rel=info&text=Just+test')
+    assert_equal(302, last_response.status, last_response.body)
   end
 
   def test_renders_page_not_found

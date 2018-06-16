@@ -136,7 +136,8 @@ end
 
 post '/do-add' do
   redirect '/hello' unless @locals[:user]
-  @locals[:owner].add(params[:entity], Time.parse(params[:time]), params[:rel], params[:text])
+  time = Time.parse(params[:time])
+  @locals[:owner].add(params[:entity], time, params[:rel], params[:text])
   redirect '/'
 end
 

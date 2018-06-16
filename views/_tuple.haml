@@ -1,0 +1,11 @@
+%p
+  %span{title: tuple['uuid']}
+    = Time.at(tuple['time'].to_i).strftime('%-d-%b-%y')
+  %a{href: '/e?entity=' + CGI.escape(tuple['entity'])}= tuple['entity']
+  %code
+    = tuple['rel']
+  - if tuple['text'] =~ /^[0-9a-z ]+$/
+    %a{href: '/?q=' + CGI.escape(tuple['rel'] + '=' + tuple['text'])}= tuple['text']
+  - else
+    = tuple['text']
+
